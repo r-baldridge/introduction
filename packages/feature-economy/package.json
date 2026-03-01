@@ -1,0 +1,12 @@
+{
+  "name": "@uplifting/feature-economy",
+  "version": "1.0.0",
+  "description": "Economic Empowerment tools.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && true"
+  },
+  "dependencies": {
+    "@uplifting/core-community": "*"
+  }
+}

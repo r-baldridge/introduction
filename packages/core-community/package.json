@@ -4,7 +4,7 @@
   "description": "Foundation for connections, civic engagement, and shared spaces.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\" && true"
+    "test": "node test.js"
   },
   "dependencies": {
     "@uplifting/core-agency": "*"

@@ -4,7 +4,7 @@
   "description": "Economic Empowerment tools.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\" && true"
+    "test": "node test.js"
   },
   "dependencies": {
     "@uplifting/core-community": "*"

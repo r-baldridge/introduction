@@ -1,0 +1,12 @@
+{
+  "name": "@uplifting/core-community",
+  "version": "1.0.0",
+  "description": "Foundation for connections, civic engagement, and shared spaces.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && true"
+  },
+  "dependencies": {
+    "@uplifting/core-agency": "*"
+  }
+}

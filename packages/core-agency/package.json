@@ -1,0 +1,10 @@
+{
+  "name": "@uplifting/core-agency",
+  "version": "1.0.0",
+  "description": "The base layer for identity, privacy, and consent.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && true"
+  },
+  "dependencies": {}
+}

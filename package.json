@@ -1,0 +1,13 @@
+{
+  "name": "uplifting-technologies",
+  "version": "1.0.0",
+  "description": "Ethical, uplifting, and expanding tools for advancing human development.",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}

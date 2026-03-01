@@ -1,4 +1,4 @@
-const { IdentityManager, ConsentManager } = require('@uplifting/core-agency');
+require('@uplifting/core-agency');
 
 class CommunityNetwork {
   constructor(db, identityManager, consentManager) {

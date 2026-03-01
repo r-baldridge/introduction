@@ -26,7 +26,7 @@ class IdentityManager {
         [id, JSON.stringify(data)],
         (err) => {
           if (err) return reject(err);
-          resolve({ id, ...data });
+          resolve({ ...data, id });
         }
       );
     });
@@ -37,7 +37,7 @@ class IdentityManager {
       this.db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
         if (err) return reject(err);
         if (!row) return resolve(null);
-        resolve({ id: row.id, ...JSON.parse(row.data) });
+        resolve({ ...JSON.parse(row.data), id: row.id });
       });
     });
   }

@@ -40,6 +40,10 @@ class EconomicEmpowerment {
   }
 
   async contributeToFund(userId, fundId, amount) {
+    if (typeof amount !== 'number' || amount <= 0) {
+      throw new Error('Amount must be a positive number');
+    }
+
     const fund = await new Promise((resolve, reject) => {
       this.db.get('SELECT * FROM funds WHERE id = ?', [fundId], (err, row) => {
         if (err) return reject(err);
@@ -57,11 +61,22 @@ class EconomicEmpowerment {
     }
 
     return new Promise((resolve, reject) => {
+      let transactionError = null;
       this.db.serialize(() => {
-        this.db.run('BEGIN TRANSACTION');
-        this.db.run('UPDATE funds SET balance = balance + ? WHERE id = ?', [amount, fundId]);
-        this.db.run('INSERT OR IGNORE INTO fund_members (fundId, userId) VALUES (?, ?)', [fundId, userId]);
-        this.db.run('COMMIT', (err) => err ? reject(err) : resolve());
+        this.db.run('BEGIN TRANSACTION', (err) => {
+          if (err) transactionError = err;
+        });
+        this.db.run('UPDATE funds SET balance = balance + ? WHERE id = ?', [amount, fundId], (err) => {
+          if (err) transactionError = err;
+        });
+        this.db.run('INSERT OR IGNORE INTO fund_members (fundId, userId) VALUES (?, ?)', [fundId, userId], (err) => {
+          if (err) transactionError = err;
+        });
+        this.db.run(transactionError ? 'ROLLBACK' : 'COMMIT', (err) => {
+          if (transactionError) return reject(transactionError);
+          if (err) return reject(err);
+          resolve();
+        });
       });
     });
   }

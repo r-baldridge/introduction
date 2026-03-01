@@ -1,43 +1,92 @@
 const { CommunityNetwork } = require('@uplifting/core-community');
 
 class CreativeExpression {
-  constructor(communityNetwork) {
-    if (!communityNetwork) {
-      throw new Error('CreativeExpression requires a CommunityNetwork');
+  constructor(db, communityNetwork) {
+    if (!db || !communityNetwork) {
+      throw new Error('CreativeExpression requires a db and CommunityNetwork');
     }
+    this.db = db;
     this.communityNetwork = communityNetwork;
-    this.artProjects = new Map(); // Map<projectId, { communityId, title, collaborators } >
   }
 
-  startArtProject(projectId, title, communityId) {
-    this.communityNetwork.getCommunityMembers(communityId);
-
-    this.artProjects.set(projectId, {
-      communityId,
-      title,
-      collaborators: new Set()
+  async init() {
+    return new Promise((resolve, reject) => {
+      this.db.exec(`
+        CREATE TABLE IF NOT EXISTS artProjects (
+          id TEXT PRIMARY KEY,
+          title TEXT,
+          communityId TEXT
+        );
+        CREATE TABLE IF NOT EXISTS collaborators (
+          projectId TEXT,
+          userId TEXT,
+          PRIMARY KEY (projectId, userId),
+          FOREIGN KEY (projectId) REFERENCES artProjects(id)
+        );
+      `, (err) => err ? reject(err) : resolve());
     });
   }
 
-  collaborateOnProject(userId, projectId) {
-    const project = this.artProjects.get(projectId);
+  async startArtProject(projectId, title, communityId) {
+    await this.communityNetwork.getCommunityMembers(communityId);
+
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        'INSERT INTO artProjects (id, title, communityId) VALUES (?, ?, ?)',
+        [projectId, title, communityId],
+        (err) => err ? reject(err) : resolve()
+      );
+    });
+  }
+
+  async collaborateOnProject(userId, projectId) {
+    const project = await new Promise((resolve, reject) => {
+      this.db.get('SELECT * FROM artProjects WHERE id = ?', [projectId], (err, row) => {
+        if (err) return reject(err);
+        resolve(row);
+      });
+    });
+
     if (!project) {
       throw new Error(`Project ${projectId} not found`);
     }
 
-    const members = this.communityNetwork.getCommunityMembers(project.communityId);
+    const members = await this.communityNetwork.getCommunityMembers(project.communityId);
     if (!members.includes(userId)) {
       throw new Error(`User ${userId} must be a member of the community ${project.communityId} to collaborate`);
     }
 
-    project.collaborators.add(userId);
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        'INSERT OR IGNORE INTO collaborators (projectId, userId) VALUES (?, ?)',
+        [projectId, userId],
+        (err) => err ? reject(err) : resolve()
+      );
+    });
   }
 
-  getCollaborators(projectId) {
-    if (!this.artProjects.has(projectId)) {
+  async getCollaborators(projectId) {
+    const project = await new Promise((resolve, reject) => {
+      this.db.get('SELECT 1 FROM artProjects WHERE id = ?', [projectId], (err, row) => {
+        if (err) return reject(err);
+        resolve(!!row);
+      });
+    });
+
+    if (!project) {
        throw new Error(`Project ${projectId} not found`);
     }
-    return Array.from(this.artProjects.get(projectId).collaborators);
+
+    return new Promise((resolve, reject) => {
+      this.db.all(
+        'SELECT userId FROM collaborators WHERE projectId = ?',
+        [projectId],
+        (err, rows) => {
+          if (err) return reject(err);
+          resolve(rows.map(r => r.userId));
+        }
+      );
+    });
   }
 }
 

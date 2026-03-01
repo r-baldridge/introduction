@@ -1,41 +1,96 @@
 class IdentityManager {
-  constructor() {
-    this.users = new Map();
+  constructor(db) {
+    this.db = db;
   }
 
-  registerUser(id, data) {
-    if (this.users.has(id)) {
+  async init() {
+    return new Promise((resolve, reject) => {
+      this.db.run(`
+        CREATE TABLE IF NOT EXISTS users (
+          id TEXT PRIMARY KEY,
+          data TEXT
+        )
+      `, (err) => err ? reject(err) : resolve());
+    });
+  }
+
+  async registerUser(id, data) {
+    const existing = await this.getUser(id);
+    if (existing) {
       throw new Error(`User with ID ${id} already exists`);
     }
-    this.users.set(id, { id, ...data });
-    return this.users.get(id);
+
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        'INSERT INTO users (id, data) VALUES (?, ?)',
+        [id, JSON.stringify(data)],
+        (err) => {
+          if (err) return reject(err);
+          resolve({ id, ...data });
+        }
+      );
+    });
   }
 
-  getUser(id) {
-    return this.users.get(id);
+  async getUser(id) {
+    return new Promise((resolve, reject) => {
+      this.db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
+        if (err) return reject(err);
+        if (!row) return resolve(null);
+        resolve({ id: row.id, ...JSON.parse(row.data) });
+      });
+    });
   }
 }
 
 class ConsentManager {
-  constructor() {
-    this.consents = new Map(); // Map<userId, Set<permission>>
+  constructor(db) {
+    this.db = db;
   }
 
-  grantConsent(userId, permission) {
-    if (!this.consents.has(userId)) {
-      this.consents.set(userId, new Set());
-    }
-    this.consents.get(userId).add(permission);
+  async init() {
+    return new Promise((resolve, reject) => {
+      this.db.run(`
+        CREATE TABLE IF NOT EXISTS consents (
+          userId TEXT,
+          permission TEXT,
+          PRIMARY KEY (userId, permission)
+        )
+      `, (err) => err ? reject(err) : resolve());
+    });
   }
 
-  revokeConsent(userId, permission) {
-    if (this.consents.has(userId)) {
-      this.consents.get(userId).delete(permission);
-    }
+  async grantConsent(userId, permission) {
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        'INSERT OR IGNORE INTO consents (userId, permission) VALUES (?, ?)',
+        [userId, permission],
+        (err) => err ? reject(err) : resolve()
+      );
+    });
   }
 
-  hasConsent(userId, permission) {
-    return this.consents.has(userId) && this.consents.get(userId).has(permission);
+  async revokeConsent(userId, permission) {
+    return new Promise((resolve, reject) => {
+      this.db.run(
+        'DELETE FROM consents WHERE userId = ? AND permission = ?',
+        [userId, permission],
+        (err) => err ? reject(err) : resolve()
+      );
+    });
+  }
+
+  async hasConsent(userId, permission) {
+    return new Promise((resolve, reject) => {
+      this.db.get(
+        'SELECT 1 FROM consents WHERE userId = ? AND permission = ?',
+        [userId, permission],
+        (err, row) => {
+          if (err) return reject(err);
+          resolve(!!row);
+        }
+      );
+    });
   }
 }
 

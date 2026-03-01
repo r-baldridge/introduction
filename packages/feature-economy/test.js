@@ -1,28 +1,45 @@
 const assert = require('assert');
+const sqlite3 = require('sqlite3').verbose();
 const { IdentityManager, ConsentManager } = require('@uplifting/core-agency');
 const { CommunityNetwork } = require('@uplifting/core-community');
 const { EconomicEmpowerment } = require('./index');
 
-function testEconomicEmpowerment() {
-  const im = new IdentityManager();
-  const cm = new ConsentManager();
-  const cn = new CommunityNetwork(im, cm);
-  const ee = new EconomicEmpowerment(cn);
+async function testEconomicEmpowerment() {
+  const db = new sqlite3.Database(':memory:');
 
-  im.registerUser('u1', { name: 'Alice' });
-  cm.grantConsent('u1', 'join_communities');
-  cn.createCommunity('c1', 'Local Group');
-  cn.joinCommunity('u1', 'c1');
+  const im = new IdentityManager(db);
+  const cm = new ConsentManager(db);
+  const cn = new CommunityNetwork(db, im, cm);
+  const ee = new EconomicEmpowerment(db, cn);
 
-  ee.createMutualAidFund('fund1', 'c1');
-  ee.contributeToFund('u1', 'fund1', 100);
+  await im.init();
+  await cm.init();
+  await cn.init();
+  await ee.init();
 
-  const balance = ee.getFundBalance('fund1');
+  await im.registerUser('u1', { name: 'Alice' });
+  await cm.grantConsent('u1', 'join_communities');
+  await cn.createCommunity('c1', 'Local Group');
+  await cn.joinCommunity('u1', 'c1');
+
+  await ee.createMutualAidFund('fund1', 'c1');
+  await ee.contributeToFund('u1', 'fund1', 100);
+
+  const balance = await ee.getFundBalance('fund1');
   assert.strictEqual(balance, 100);
 
-  im.registerUser('u2', { name: 'Bob' });
-  assert.throws(() => ee.contributeToFund('u2', 'fund1', 50), /must be a member/);
+  await im.registerUser('u2', { name: 'Bob' });
+  await assert.rejects(
+    async () => await ee.contributeToFund('u2', 'fund1', 50),
+    /must be a member/
+  );
+
+  db.close();
 }
 
-testEconomicEmpowerment();
-console.log('feature-economy tests passed!');
+testEconomicEmpowerment().then(() => {
+  console.log('feature-economy tests passed!');
+}).catch((err) => {
+  console.error('feature-economy tests failed:', err);
+  process.exit(1);
+});

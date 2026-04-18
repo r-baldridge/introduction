@@ -21,7 +21,7 @@ This document outlines options for personal hardware and open-source software to
 - **Proxmox VE / XCP-ng:** Open-source hypervisors for managing VMs and containers, allowing segmentation of services on mini-PCs or home servers.
 
 ### Networking & Edge Security
-- **OPNsense / pfSense:** Open-source firewall and routing software to manage network traffic, implement strict egress filtering, and host VPNs.
+- **OPNsense / pfSense Community Edition (CE):** Open-source firewall and routing software to manage network traffic, implement strict egress filtering, and host VPNs.
 - **WireGuard / OpenVPN:** Protocols for establishing secure, encrypted tunnels between local devices and privacy-preserving servers. WireGuard is preferred for its modern cryptography and performance.
 - **Pi-hole / AdGuard Home:** Network-level DNS sinkholes to block ads, trackers, and malicious domains before they reach devices.
 

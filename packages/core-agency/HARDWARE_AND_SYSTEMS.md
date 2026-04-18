@@ -43,7 +43,7 @@ To maintain control over private info while allowing necessary online access, th
 
 To preserve user privacy without sacrificing significant result accuracy when interacting with external services, the system should implement several layers of obfuscation:
 
-- **Local Pre-processing & Scrubbing:** All user data is processed locally before being relayed online. This includes stripping metadata (e.g., EXIF data from photos), removing personally identifiable information (PII) using local NLP models, and aggregating data points.
+- **Local Pre-processing & Scrubbing:** All user data is processed locally before being relayed online. This includes stripping metadata (e.g., EXIF data from photos), applying best-effort de-identification for unstructured text using local NLP models, using deterministic redaction for structured fields where possible, and aggregating data points. Because automated PII detection can produce false negatives and false positives, high-risk disclosures should be manually reviewed before any data is shared externally.
 - **Traffic Padding & Decoy Requests:** To obfuscate behavioral patterns, the system can generate background "noise" traffic—making decoy searches on various topics or downloading random files—to mask the user's actual activity and interests.
 - **Differential Privacy / Noise Injection:** When sharing aggregated data or statistics (e.g., for community research), add mathematically calibrated noise to the dataset. This ensures individual records cannot be identified while maintaining the statistical validity of the aggregate results.
 - **K-Anonymity / L-Diversity:** Ensure that any shared dataset contains at least 'k' individuals with the same quasi-identifiers, making it difficult to single out a specific person.

@@ -1,6 +1,6 @@
 # Hardware and Systems Options for Privacy & Security
 
-This document outlines options for personal hardware and open-source software to produce local, encrypted, offline backed-up, and air-gapped systems for varying levels of personal data security. These systems are designed to be firewalled and VPN-proxied to privacy-preserving servers when online access is needed, ensuring the system retains full control over all private information.
+This document outlines options for personal hardware and open-source software to produce local, encrypted, offline backed-up, and air-gapped systems for varying levels of personal data security. These systems are designed to prioritize local control of sensitive data and to reduce disclosure when online access is needed by using firewalls and VPN/proxy connections to privacy-preserving servers. This threat model assumes that sensitive processing and storage remain local where possible, while acknowledging that VPN/proxy operators, network providers, and destination services may still observe connection metadata and any information intentionally transmitted to them.
 
 ## 1. Hardware Options
 

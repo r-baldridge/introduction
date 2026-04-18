@@ -10,7 +10,7 @@ This document outlines options for personal hardware and open-source software to
 - **Dedicated Hardware Firewalls (e.g., Protectli, Netgate):** Essential for edge security, allowing fine-grained control over inbound and outbound traffic.
 
 ### Air-Gapped and Backup Hardware
-- **Old Laptops/Desktops:** Repurposed hardware with physical networking components (Wi-Fi cards, Ethernet ports) removed or disabled at the BIOS/hardware level to ensure true air-gapping.
+- **Old Laptops/Desktops:** Repurposed hardware for air-gapped use, preferably with networking components (e.g., Wi-Fi/Bluetooth radios and Ethernet hardware) physically removed where feasible. Disabling interfaces in BIOS/firmware can reduce risk, but should not be treated as a guarantee; for higher assurance, also verify the OS has no active network configuration or drivers enabled.
 - **External Encrypted Drives:** Hardware-encrypted USB drives (e.g., Apricorn Aegis) or software-encrypted standard drives (using LUKS or Veracrypt) for offline, cold storage of critical data and backups.
 
 ## 2. Open-Source Software Options

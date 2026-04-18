@@ -1,10 +1,17 @@
 # Introduction
 
-## Mission
+## Mission & Advocacy Context
 
 This repository is dedicated to developing ethical, uplifting, and expanding tools for advancing human development. Our focus is on creating technologies that support people in new ways to pursue their best versions—tools that are community-building and dignity-preserving by design.
 
 We believe technology should serve humanity's highest aspirations: connection, growth, agency, and flourishing. Every project here aims to expand what's possible while honoring the inherent worth of every person it touches.
+
+**Advocacy through Architecture:**
+Beyond just building tools, this repository is intended to actively advocate for a fundamental shift in how technology is constructed and deployed. We aim to serve as a proving ground and an actionable framework for:
+- **Data Sovereignty:** Proving that local-first, air-gapped, and encrypted systems can provide rich experiences without sacrificing user privacy to centralized corporate entities.
+- **Decentralization:** Demonstrating that community-driven platforms, built on trust networks and decentralized identifiers, are viable alternatives to siloed monopolies.
+- **Informed Consent by Default:** Implementing granular, append-only consent ledgers to make privacy the baseline, not an afterthought or a hidden setting.
+By openly developing these architectures and detailing specific hardware/software configurations, we advocate for a technological future where self-determination and agency are the non-negotiable bedrock of all digital interaction.
 
 ---
 

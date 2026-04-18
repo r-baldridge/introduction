@@ -36,7 +36,7 @@ To maintain control over private info while allowing necessary online access, th
 
 1.  **Local Network Segmentation:** Use VLANs on the firewall to separate IoT devices, guest networks, and highly secure personal devices.
 2.  **Strict Egress Filtering:** By default, block all outbound traffic from the secure VLAN. Only allow specific protocols (e.g., HTTPS, WireGuard) to specific, trusted IP addresses or privacy-preserving server networks (e.g., Mullvad, ProtonVPN).
-3.  **VPN Proxy Gateway:** Route all traffic from the secure network through a dedicated VPN gateway VM. This ensures that even if a local device is compromised, its traffic is still encrypted and routed through the VPN tunnel, masking the true origin IP.
+3.  **VPN Proxy Gateway:** Route all traffic from the secure network through a dedicated VPN gateway VM. This helps protect traffic from ISP/LAN/on-path observers and masks the source IP from remote services, but it does not mitigate compromise of the local device itself: a compromised host can still exfiltrate data through the VPN tunnel.
 4.  **Air-Gapped Workstations:** For the most sensitive data (e.g., cryptographic keys, personal journals), use a dedicated, air-gapped machine. Data transfer should only occur via physically sanitized USB drives.
 
 ## 4. Data De-identification and Obfuscation Methods

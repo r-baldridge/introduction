@@ -28,7 +28,7 @@ This document outlines options for personal hardware and open-source software to
 ### Local Services & Data Management
 - **Nextcloud:** A self-hosted cloud storage solution for file synchronization, calendar, and contacts, replacing centralized services like Google Drive or iCloud.
 - **Syncthing:** A decentralized file synchronization tool that syncs files directly between devices without relying on a central server.
-- **Vaultwarden / Bitwarden:** Self-hosted password managers for secure credential storage.
+- **Bitwarden (official server) / Vaultwarden (third-party compatible server):** Self-hosted password manager options for secure credential storage. Bitwarden is the official server implementation, while Vaultwarden is a community-maintained Bitwarden-compatible alternative with a different support and audit profile.
 
 ## 3. Network Architecture & Connectivity
 

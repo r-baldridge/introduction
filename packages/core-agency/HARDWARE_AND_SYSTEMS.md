@@ -16,8 +16,8 @@ This document outlines options for personal hardware and open-source software to
 ## 2. Open-Source Software Options
 
 ### Operating Systems & Hypervisors
-- **Qubes OS:** A security-oriented desktop operating system that uses Xen virtualization to isolate different tasks (e.g., work, personal, banking) into separate "qubes," preventing compromise in one area from affecting others.
-- **Tails (The Amnesic Incognito Live System):** A portable OS that routes all traffic through Tor and leaves no trace on the host machine, perfect for highly sensitive, temporary tasks.
+- **Qubes OS:** A security-oriented desktop operating system that uses Xen virtualization to isolate different tasks (e.g., work, personal, banking) into separate "qubes," helping reduce blast radius if one area is compromised.
+- **Tails (The Amnesic Incognito Live System):** A portable OS that routes all traffic through Tor and aims to leave minimal traces on the host machine, though residual traces can still depend on hardware, configuration, and user behavior; it is well suited for highly sensitive, temporary tasks.
 - **Proxmox VE / XCP-ng:** Open-source hypervisors for managing VMs and containers, allowing segmentation of services on mini-PCs or home servers.
 
 ### Networking & Edge Security

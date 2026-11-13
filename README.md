@@ -34,6 +34,8 @@ To start developing:
 
 ## Impactful Uplifting Technologies to Explore
 
+> See **[PROJECTS.md](./PROJECTS.md)** for a catalog of concrete code projects supporting each topic below, with dependencies, effort estimates, and a suggested build order.
+
 ### Education & Knowledge Access
 - **Open educational platforms** — Democratizing access to quality learning regardless of geography or income
 - **AI tutoring systems** — Personalized learning that adapts to individual needs and paces

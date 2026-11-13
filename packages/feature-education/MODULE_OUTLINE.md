@@ -29,6 +29,8 @@ Key areas identified:
 
 ### Outline for Offline-First Micro-Learning (Option A)
 
+> **Status: implemented.** See [README.md](./README.md). The implementation uses vanilla JS rather than React/Vue, so there is no build step, and a hand-written service worker instead of Workbox.
+
 **Architecture:**
 - **Frontend:** React/Vue PWA. Uses Service Workers to cache application shell and learning content.
 - **Storage:** `IndexedDB` for local content storage. Syncs with the central `sqlite3` database when online.

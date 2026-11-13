@@ -1,10 +1,26 @@
 {
   "name": "@uplifting/feature-education",
   "version": "1.0.0",
-  "description": "Education & Knowledge Access tools.",
+  "description": "Education & Knowledge Access tools: offline-first micro-learning, open content importer, spaced-repetition engine.",
+  "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./srs": "./src/shared/srs.js",
+    "./schema": "./src/shared/module-schema.js",
+    "./importer": "./src/importer/index.js"
+  },
+  "bin": {
+    "oer-import": "./bin/oer-import.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
   "scripts": {
-    "test": "echo \"No test specified\" && true"
+    "start": "node --disable-warning=ExperimentalWarning src/server/main.js",
+    "build": "node bin/oer-import.js build content/source content/modules",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js",
+    "test:e2e": "node --disable-warning=ExperimentalWarning e2e/offline.e2e.js"
   },
   "dependencies": {
     "@uplifting/core-community": "*"

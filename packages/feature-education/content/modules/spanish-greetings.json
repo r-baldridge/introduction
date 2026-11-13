@@ -1,0 +1,79 @@
+{
+  "id": "spanish-greetings",
+  "version": 1,
+  "title": "Everyday Spanish Greetings",
+  "description": "Ten common greetings and courtesies, Spanish to English.",
+  "language": "es",
+  "license": {
+    "id": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "attribution": {
+    "title": "Everyday Spanish Greetings",
+    "authors": [
+      "Uplifting Technologies contributors"
+    ]
+  },
+  "items": [
+    {
+      "id": "card-b2c65197",
+      "type": "flashcard",
+      "front": "hola",
+      "back": "hello"
+    },
+    {
+      "id": "card-6937868b",
+      "type": "flashcard",
+      "front": "gracias",
+      "back": "thank you"
+    },
+    {
+      "id": "card-761cb512",
+      "type": "flashcard",
+      "front": "por favor",
+      "back": "please"
+    },
+    {
+      "id": "card-294fd184",
+      "type": "flashcard",
+      "front": "de nada",
+      "back": "you're welcome"
+    },
+    {
+      "id": "card-86261844",
+      "type": "flashcard",
+      "front": "buenos días",
+      "back": "good morning"
+    },
+    {
+      "id": "card-23597ad4",
+      "type": "flashcard",
+      "front": "buenas tardes",
+      "back": "good afternoon"
+    },
+    {
+      "id": "card-45eff64d",
+      "type": "flashcard",
+      "front": "buenas noches",
+      "back": "good evening / good night"
+    },
+    {
+      "id": "card-68de32b9",
+      "type": "flashcard",
+      "front": "adiós",
+      "back": "goodbye"
+    },
+    {
+      "id": "card-17e0f621",
+      "type": "flashcard",
+      "front": "¿cómo estás?",
+      "back": "how are you? (informal)"
+    },
+    {
+      "id": "card-df1c9139",
+      "type": "flashcard",
+      "front": "mucho gusto",
+      "back": "nice to meet you"
+    }
+  ]
+}

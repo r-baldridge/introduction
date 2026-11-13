@@ -4,6 +4,7 @@ A list of concrete code projects that could support each topic in the [README](.
 
 - Projects marked **(Outline A/B/C)** are already specified in that package's `MODULE_OUTLINE.md`. The rest are new proposals.
 - **Effort:** **S** = a weekend to a week (mostly CRUD/UI), **M** = a few weeks (some non-trivial logic or integration), **L** = a month or more (protocols, real-time, ML, or hardware).
+- ✅ *built* marks projects with a working implementation in the repo.
 - **Builds on** names the other projects or packages a project depends on, so you can pick a build order.
 
 The stack assumed throughout matches the existing outlines: Node.js + Express + `sqlite3` on the server, Web Crypto / IndexedDB / PWA on the client.
@@ -89,9 +90,9 @@ The module outlines assume some infrastructure that doesn't exist in the repo ye
 ### Open Educational Platforms
 | Project | What it does | Builds on | Effort |
 |---|---|---|---|
-| **Offline-First Micro-Learning** (Outline A) | A PWA with a service worker, IndexedDB storage for modules, and progress sync. | App shell | M |
-| **Spaced-Repetition Engine** | A standalone SM-2/FSRS scheduler library for flashcards that runs fully offline. | Micro-Learning | S |
-| **Open Content Importer** | Imports openly licensed content (OpenStax, Wikibooks, CC-licensed material) into modules and keeps license attribution on each item. | Micro-Learning | M |
+| **Offline-First Micro-Learning** (Outline A) ✅ *built* | A PWA with a service worker, IndexedDB storage for modules, and progress sync. | App shell | M |
+| **Spaced-Repetition Engine** ✅ *built* | A standalone SM-2/FSRS scheduler library for flashcards that runs fully offline. | Micro-Learning | S |
+| **Open Content Importer** ✅ *built* | Imports openly licensed content (OpenStax, Wikibooks, CC-licensed material) into modules and keeps license attribution on each item. | Micro-Learning | M |
 | **Peer Study Circles** | Small groups working through a module together on a shared schedule, with shared progress and discussion prompts. | Groups, Micro-Learning | S |
 
 ### AI Tutoring Systems

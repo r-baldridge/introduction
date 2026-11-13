@@ -1,0 +1,84 @@
+{
+  "id": "fractions-basics",
+  "version": 1,
+  "title": "Fractions: The Basics",
+  "description": "What the top and bottom numbers mean, equivalent fractions, and comparing fractions.",
+  "language": "en",
+  "license": {
+    "id": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "attribution": {
+    "title": "Fractions: The Basics",
+    "authors": [
+      "Uplifting Technologies contributors"
+    ]
+  },
+  "items": [
+    {
+      "id": "what-a-fraction-means",
+      "type": "text",
+      "title": "What a fraction means",
+      "body": "A fraction describes part of a whole. The bottom number, the denominator, says how many equal parts the whole is cut into. The top number, the numerator, says how many of those parts you have.\n\nIn 3/4, the whole is cut into 4 equal parts and you have 3 of them."
+    },
+    {
+      "id": "equivalent-fractions",
+      "type": "text",
+      "title": "Equivalent fractions",
+      "body": "Different fractions can name the same amount. Multiplying or dividing the top and bottom by the same number does not change the amount.\n\n- 1/2 = 2/4 = 4/8\n- 6/9 = 2/3 (divide top and bottom by 3)\n\nDividing until no common factor is left is called simplifying."
+    },
+    {
+      "id": "comparing-fractions",
+      "type": "text",
+      "title": "Comparing fractions",
+      "body": "If two fractions have the same denominator, the one with the bigger numerator is bigger. If the denominators differ, rewrite both with a common denominator first.\n\nTo compare 2/3 and 3/5, rewrite both in fifteenths: 10/15 and 9/15. So 2/3 is bigger."
+    },
+    {
+      "id": "card-3497a0d6",
+      "type": "flashcard",
+      "front": "In the fraction 5/8, what does the 8 tell you?",
+      "back": "The whole is split into 8 equal parts (the denominator)."
+    },
+    {
+      "id": "card-e3353f29",
+      "type": "flashcard",
+      "front": "In the fraction 5/8, what does the 5 tell you?",
+      "back": "You have 5 of those parts (the numerator)."
+    },
+    {
+      "id": "card-6792adbe",
+      "type": "flashcard",
+      "front": "Simplify 6/9.",
+      "back": "2/3 — divide the top and bottom by 3."
+    },
+    {
+      "id": "card-ba64ccb8",
+      "type": "flashcard",
+      "front": "Name a fraction equivalent to 1/2.",
+      "back": "Any n/2n, for example 2/4, 3/6, or 4/8."
+    },
+    {
+      "id": "quiz-344733f1",
+      "type": "quiz",
+      "question": "Which fraction is bigger?",
+      "choices": [
+        "3/5",
+        "2/3"
+      ],
+      "answer": 1,
+      "explanation": "In fifteenths, 2/3 = 10/15 and 3/5 = 9/15."
+    },
+    {
+      "id": "quiz-3df0e5f2",
+      "type": "quiz",
+      "question": "Which is equivalent to 3/4?",
+      "choices": [
+        "4/5",
+        "6/12",
+        "9/12"
+      ],
+      "answer": 2,
+      "explanation": "Multiply the top and bottom of 3/4 by 3."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Micro-Learning",
+  "short_name": "Learn",
+  "description": "Short lessons and spaced-repetition practice that work offline.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f5f0",
+  "theme_color": "#2f6f4f",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
